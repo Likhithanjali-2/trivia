@@ -13,7 +13,7 @@ window.onload=function(){
         card.style.order = ramdomPos;
         });
     })();
-   show = setInterval(start,1000*7);
+   show = setInterval(start,1000*10);
    
    cards.forEach(card => card.addEventListener('click',flipCard));
    
