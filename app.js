@@ -42,6 +42,7 @@ function flipCard(){
     presentCard = this.classList[1];
     if (previousCard != '' && presentCard != '') {
         if(checkTheWord(previousCard+presentCard)==true){
+            playAudio("zapsplat_multimedia_game_tone_bright_sparkle_award_star_001_43980.mp3");
             score += 10;
             document.getElementById("score").textContent = score;
             riddleCount += 1;
