@@ -1,4 +1,4 @@
-var words = ["rainbow","tablefan","beering","chairman"];
+var words = ["rainbow","tablefan","beering","chairman","lipstick","newspaper","goldfish","facebook"];
 var previousCard = '';
 var presentCard = '';
 var score = 0;
@@ -7,16 +7,16 @@ var visited =[];
 
 window.onload=function(){
     var cards = document.querySelectorAll('.memory-card');
+
     (function shuffle() {
         cards.forEach(card => {
-        let ramdomPos = Math.floor(Math.random() * 8);
+        let ramdomPos = Math.floor(Math.random() * 16);
         card.style.order = ramdomPos;
         });
     })();
    show = setInterval(start,1000*10);
-   
+
    cards.forEach(card => card.addEventListener('click',flipCard));
-   
 }
 
 function start(){
@@ -25,7 +25,7 @@ function start(){
     var minutes = 60 * 1,
     display= document.querySelector('#time');
     displayTime = startTimer(minutes, display);
-    popUp = setInterval(startGame,1000);
+    popUp = setInterval(startGame,100);
 }
 
 function hideCards(){
@@ -38,30 +38,18 @@ function hideCards(){
 function flipCard(){
     playAudio('Card-flip-sound-effect.mp3');
     previousCard = presentCard ;
-    console.log("welcome");
     this.classList.toggle('flip');
     presentCard = this.classList[1];
-    console.log("this -->",this);
-    console.log(previousCard ,presentCard);
     if (previousCard != '' && presentCard != '') {
         if(checkTheWord(previousCard+presentCard)==true){
             score += 10;
             document.getElementById("score").textContent = score;
             riddleCount += 1;
-            endOfGame = setInterval(checkEndOfTheGame,1000);
-            //console.log("score",score);
-            //fixToFrontFace();
+            endOfGame = setInterval(checkEndOfTheGame,100);
             previousCard = '';
             presentCard ='';
-            riddle = setInterval(nextRiddle,1000);
-        }else{
-            // // flipToBack(this);
-            // console.log("-->",this,visited);
-            // console.log(visited[0],visited[1]);
-            // visited[0].toggle('flip');
-            // visited[1].toggle('flip');
-            // visited = [];
-        }   
+            riddle = setInterval(nextRiddle,100);
+        }
     }
 }
 
@@ -71,19 +59,12 @@ function playAudio(url) {
 
 function checkEndOfTheGame(){
     if(words.length <= riddleCount){
-        // console.log("Game Over");
         clearInterval(displayTime);
         alert("Game Over!! Your SCORE:"+score);
         window.open("index.html");
     }
     clearInterval(endOfGame);
 }
-
-// function flipToBack(){
-//     console.log("-->",this);
-    
-
-// }
 
 function checkTheWord(word){
     if(words[riddleCount]==word)
@@ -129,29 +110,3 @@ function startTimer(duration, display) {
         }
     }, 1000);
 }
-
-
-// function hideCards(){
-//     //document.getElementsByClassName("front-face").style
-//     //document.getElementsByClassName('.memory-card').classList.add('flip');
-//     //console.log(document.getElementsByClassName('.front-face').style);
-//     //console.log(document.getElementsByClassName(".memory-card").classList);
-//     //console.log(document.getElementsByClassName('front-face'));
-//     //console.log(document.querySelectorAll('.memory-card'));
-//     frontFace = document.getElementsByClassName('front-face');
-//     for(var i=0 ; i < frontFace.length ; i++){
-//         frontFace[i].style.display="none";
-//     }    
-//     //unlockCards();
-// }
-
-
-
-//cards.forEach(card => card.addEventListener('click', flipCard));
-//cards.forEach(card => card.onclick(flipCard));
-// console.log(document.getElementById('btn'));
-// document.getElementById("btn").addEventListener('click',flipCard);
-//.addEventListener('click',flipCard);
-// document.getElementById("myBtn").addEventListener("click", function(){
-//     document.getElementById("demo").innerHTML = "Hello World";
-//   },false);
