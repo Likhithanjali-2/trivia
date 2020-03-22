@@ -125,6 +125,7 @@ function startTimer(duration, display) {
             }
             else{
                 alert("Game Over!! Sorry You lost this game");
+                window.open("index.html");
             }
             display.style.color ="red";
             clearInterval(temp);
