@@ -1,3 +1,4 @@
+//--------own code----//
 var riddles = ["This natural phenomenon Cannot be seen when it is dark For it’s caused by light hitting rain To create a colorful arc",
 "I am something that spins round But I am not a curveball I sometimes sit on a desk And I help to keep you cool",
 "The act of grasping someone's right hand with your right hand and moving it up and down",
@@ -14,10 +15,11 @@ var presentCard = '';
 var score = 0;
 var riddleCount =0;
 var visited =[];
+//------------------------------//
 
 window.onload=function(){
+    //------referred from js tutorial-----//
     var cards = document.querySelectorAll('.memory-card');
-
     (function shuffle() {
         cards.forEach(card => {
         let ramdomPos = Math.floor(Math.random() * 16);
@@ -25,14 +27,15 @@ window.onload=function(){
         });
     })();
    show = setInterval(start,1000*10);
-
    cards.forEach(card => card.addEventListener('click',flipCard));
+   //-----------------------------------//
 }
 
+//--------own code---------//
 function start(){
     hideCards();
     clearInterval(show);
-    var minutes = 60 * 1,
+    var minutes = 60 * 1;
     display= document.querySelector('#time');
     displayTime = startTimer(minutes, display);
     popUp = setInterval(startGame,100);
@@ -66,11 +69,15 @@ function flipCard(){
         }
     }
 }
+//------------------------------//
 
+//-referred from stack overflow-//
 function playAudio(url) {
     new Audio(url).play();
 }
+//-------------------------------//
 
+//-----own code-----------------//
 function checkEndOfTheGame(){
     if(words.length <= riddleCount){
         clearInterval(displayTime);
@@ -96,7 +103,9 @@ function startGame(){
     riddle = setInterval(nextRiddle,2000);
     clearInterval(popUp)
 }
+//-------------------------------//
 
+//-referred from stack overflow--//
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     temp = setInterval(function () {
@@ -124,3 +133,4 @@ function startTimer(duration, display) {
         }
     }, 1000);
 }
+//-------------------------------//
